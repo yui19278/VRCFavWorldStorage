@@ -60,9 +60,9 @@ group :test do
 end
 
 # lint
-gem 'rubocop'
-gem 'rubocop-ast'
-gem 'rubocop-performance'
+gem "rubocop"
+gem "rubocop-ast"
+gem "rubocop-performance"
 
 # api
 gem "faraday"
