@@ -8,5 +8,5 @@ Rails.application.routes.draw do
     end
   end
   # tag作成と一覧取得
-  resources :users, only: [:index :create]
+  resources :users, only: [ :index, :create ]
 end
