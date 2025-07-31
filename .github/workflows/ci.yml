@@ -3,7 +3,7 @@ name: CI
 on:
   pull_request:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   scan_ruby:
@@ -35,6 +35,7 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Install Node.js
       - name: Scan for security vulnerabilities in JavaScript dependencies
         run: bin/importmap audit
 
