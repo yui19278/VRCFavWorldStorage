@@ -2,7 +2,7 @@ require "rotp"
 require "faraday"
 require "faraday-cookie.jar"
 
-class twofactorauth
+class TwoFactorAuthService
 
     BASE_URL = "https://vrchat.cloud/api/1"
     USER_AGENT = "MyApp1.0 / github.com/yui19278"
