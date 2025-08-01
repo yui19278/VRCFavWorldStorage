@@ -38,5 +38,7 @@ class TwoFactorAuthService
         end
         $stdout.puts "ログインしました"
         pp verify.body
+        # returnは省略可
+        @connection
     end
 end
