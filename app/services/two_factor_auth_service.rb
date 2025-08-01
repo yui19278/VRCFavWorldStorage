@@ -3,10 +3,8 @@ require "faraday"
 require "faraday-cookie_jar"
 
 class TwoFactorAuthService
-
     BASE_URL = "https://vrchat.cloud/api/1"
     USER_AGENT = "MyApp1.0 / github.com/yui19278"
-
     def initialize
         @email = ENV["vrc_email"]
         @password = ENV["vrc_password"]
@@ -17,7 +15,7 @@ class TwoFactorAuthService
         @connection = Faraday.new(url: BASE_URL) do |f|
             f.request   :authorization, :Basic, email, password
             f.request   :json
-            f.response  :json, :content_type => /\bjson$/
+            f.response  :json, :content_type: /\bjson$/
             f.use       :cookie_jar
         end
     end
@@ -37,7 +35,7 @@ class TwoFactorAuthService
         
         # 2FA
         verify = @connection.post("auth/twofactorauth/totp/verify") do |req|
-            req.headers['Content-Type'] = 'application/json'
+            req.headers['Content-Type'] = "application/json"
             req.body = { code: @TOTP }
         end
         unless verify.sucsess?
