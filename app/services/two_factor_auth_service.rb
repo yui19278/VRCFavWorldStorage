@@ -10,12 +10,11 @@ class TwoFactorAuthService
         @password = ENV["vrc_password"]
         @APIKEY = ENV["vrc_apikey"]
         @secretkey = ENV["vrc_secretkey"]
-        @TOTP = ROTP::TOTP.new(@secretkey).now
 
-        @connection = Faraday.new(url: BASE_URL) do |f|
-            f.request   :authorization, :Basic, email, password
+        @connection = Faraday.new(url: BASE_URL, headers: { 'User-Agent': USER_AGENT }) do |f|
+            f.request   :authorization, :Basic, @email, @password
             f.request   :json
-            f.response  :json, :content_type: /\bjson$/
+            f.response  :json, content_type: /\bjson$/
             f.use       :cookie_jar
         end
     end
@@ -24,24 +23,21 @@ class TwoFactorAuthService
         # basic認証
         @connection.basic_auth(@email, @password)
         response = @connection.get("auth/user")
-        unless response.sucsess?
+        unless response.succes?
             return $stderr.puts "ベーシック認証に失敗しました"
         end
         pp response.body
 
-        # cookieの取得
-        cookies = response.headers["set-cookie"]
-        response_body = JSON.parse(response.body)
-        
         # 2FA
+        totpcode = ROTP::TOTP.new(@secretkey).now
         verify = @connection.post("auth/twofactorauth/totp/verify") do |req|
-            req.headers['Content-Type'] = "application/json"
-            req.body = { code: @TOTP }
+            req.headers["Content-Type"] = "application/json"
+            req.body = { code: totpcode }
         end
-        unless verify.sucsess?
+        unless verify.succes?
             return $stderr.puts "2FAに失敗しました"
         end
+        $stdout.puts "ログインしました"
         pp verify.body
-    end 
-    $stdout.puts "ログインしました"
+    end
 end
