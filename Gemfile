@@ -67,6 +67,7 @@ gem "rubocop-performance"
 # api
 gem "faraday"
 gem "faraday-retry"
+gem "faraday-cookie_jar"
 
 # path
 gem "dotenv-rails"
