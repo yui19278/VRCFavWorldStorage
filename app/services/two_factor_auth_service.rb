@@ -1,6 +1,6 @@
 require "rotp"
 require "faraday"
-require "faraday-cookie.jar"
+require "faraday-cookie_jar"
 
 class TwoFactorAuthService
 
@@ -15,7 +15,7 @@ class TwoFactorAuthService
         @TOTP = ROTP::TOTP.new(@secretkey).now
 
         @connection = Faraday.new(url: BASE_URL) do |f|
-            f.request   :authorization: Basic, email, password
+            f.request   :authorization, :Basic, email, password
             f.request   :json
             f.response  :json, :content_type => /\bjson$/
             f.use       :cookie_jar
@@ -28,6 +28,7 @@ class TwoFactorAuthService
         response = @connection.get("auth/user")
         unless response.sucsess?
             return $stderr.puts "ベーシック認証に失敗しました"
+        end
         pp response.body
 
         # cookieの取得
@@ -41,7 +42,8 @@ class TwoFactorAuthService
         end
         unless verify.sucsess?
             return $stderr.puts "2FAに失敗しました"
+        end
         pp verify.body
     end 
-    return $stdout.puts "ログインしました"
+    $stdout.puts "ログインしました"
 end
