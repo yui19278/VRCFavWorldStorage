@@ -1,5 +1,3 @@
-require Rails.root.join("app/services/two_factor_auth_service")
-
 Rails.application.config.after_initialize do
     begin
         TwoFactorAuthService.new.call
