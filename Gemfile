@@ -67,9 +67,13 @@ gem "rubocop-performance"
 # api
 gem "faraday"
 gem "faraday-retry"
+gem "faraday-cookie_jar"
 
 # path
 gem "dotenv-rails"
 
 # i18n
 gem "rails-i18n", "~> 7.0"
+
+# vrcAPI, rotp
+gem "rotp"
