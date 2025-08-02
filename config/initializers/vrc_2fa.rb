@@ -1,6 +1,6 @@
 Rails.application.config.after_initialize do
     begin
-        TwoFactorAuthService.new.call
+        # TwoFactorAuthService.new.call
         Rails.logger.info "2fa ok"
     rescue => e
         Rails.logger.error "2fa failed"
