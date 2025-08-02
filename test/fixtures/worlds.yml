@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+skipfloor:
+  name: "skipfloor"
+  launch_url: "https://vrchat.com/home/launch?worldId=wrld_7cb5ff54-8d57-4cef-a9e3-0a51fda1a39a&instanceId=87976~hidden(usr_3a7c1eaa-c880-4d20-a7e6-348b546a9948)~region(us)~nonce(a90b058b-328e-42d1-b352-48845086f7f7)"
+  descroption: "実家"
+
+huemv:
+  name: "huemv"
+  launch_url: "https://vrchat.com/home/launch?worldId=wrld_93f4a799-eddc-486d-9c44-f64f1dfe3ba5&instanceId=12856~hidden(usr_3a7c1eaa-c880-4d20-a7e6-348b546a9948)~region(jp)"
+  descroption: "ほしあゆ"

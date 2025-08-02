@@ -1,0 +1,10 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+chill:
+  name: "chill"
+
+jp:
+  name: "jp"
+
+music:
+  name: "music"
