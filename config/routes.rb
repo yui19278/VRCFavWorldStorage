@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root "home#index"
+  get "homes/index"
+  root "homes#index"
 
   resources :worlds do
     collection do
@@ -8,5 +9,5 @@ Rails.application.routes.draw do
     end
   end
   # tag作成と一覧取得
-  resources :users, only: [ :index, :create ]
+  resources :tags, only: [ :index, :create ]
 end
